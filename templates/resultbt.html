@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="en">
+
+<style type='text/css'>
+    body {
+        background-image: url(static/result.png);
+        background-position: center;
+        background-size: cover;
+        font-family: sans-serif;
+        margin-top: 40px;
+
+    }
+
+    .regform {
+        width: 800px;
+        background-color: rgba(253, 252, 252, 0.8);
+        margin: auto;
+        color: #0f0f0f;
+        padding: 10px 0px 10px 0px;
+        text-align: center;
+        border-radius: 15px 15px 0px 0px;
+
+    }
+
+    .main-form {
+        width: 800px;
+        margin: auto;
+        background-color: rgb(0, 0, 0, 0.7);
+        padding-left: 50px;
+        padding-right: 50px;
+        padding-bottom: 20px;
+        color: #FFFFFF;
+    }
+
+    .form-group {
+        margin-top: 5px;
+        margin-bottom: 5px;
+    }
+
+    p{
+        font-size:20px;
+        font-family: sans-serif;
+    }
+    #rating{border:none;float:left;}
+    #rating>input{display:none;}
+    #rating>label:before{margin:5px;font-size:1.25em;font-family:FontAwesome;display:inline-block;content:"\f005";}
+    #rating>.half:before{content:"\f089";position:absolute;}
+    #rating>label{color:#ddd;float:right;}
+
+    #rating>input:checked~label,
+    #rating:not(:checked)>label:hover,
+    #rating:not(:checked)>label:hover~label{color:#FFD700;}
+
+    #rating>input:checked+label:hover,
+    #rating>input:checked~label:hover,
+    #rating>label:hover~input:checked~label,
+    #rating>input:checked~label:hover~label{color:#FFED85;}
+
+
+</style>
+
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <title>Brain Tumor Detection</title>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark" style = 'background-color: #1488db; padding-top:2px; padding-bottom:2px' >
+        <div class="container-fluid">
+            <a class="navbar-brand mb-0 h1 " href="/">
+            <img src = "../static/new_pic/Logo BK_vien trang.png" width="39" height="39"
+                 alt="" class="d-inline-block align-center " > Doctor Assistant
+
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+                    <li class="nav-item">
+                        <a class="nav-link " aria-current="page" href="/covid">Covid</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link " aria-current="page" href="/braintumor">Brain Tumor</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link " aria-current="page" href="/diabetes">Diabetes</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link " aria-current="page" href="/heartdisease">Heart Disease</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class='regform mt-3'>
+        <h1>Predicted Results: Brain Tumor</h1>
+    </div>
+
+    <div class='main-form'>
+        <div >
+            <div class="row">
+                <div class="col">
+                    <img src="static/uploads/{{filename}}"
+                        style='width:250px;height:250px;margin-top: 30px;margin-bottom:30px;'>
+                    {% if r==1 %}
+                    <div>
+                        <p>Predicted Results:<i><b> TUMOR</b></i></p>
+                    </div>
+
+
+                    {% else %}
+                    <div>
+                        <p>Predicted Results:<i><b> NO TUMOR</b></i></p>
+                    </div>
+                    {% endif %}
+
+                </div>
+
+                <div class="col"  style='margin-top: 30px;margin-bottom:30px;'>
+                    <p>Patient's name : {{fn}}</p>
+
+                    <p>Age : {{age}}</p>
+                    <p>Sex: {{gender}}</p>
+
+
+                    <p>Doctor: {{ln}}</p>
+
+                    <!-- Add icon library -->
+
+
+
+                    <div class="row">
+                        <div class="col">
+                                <label for="feedback"><i>Doctor's feedback:</i></label>
+                        </div>
+
+                        <div class="col">
+                            <div id="rating">
+                                        <input type="radio" id="star5" name="rating" value="5" />
+                                        <label class = "full" for="star5" title="Awesome - 5 stars"></label>
+
+                                        <input type="radio" id="star4" name="rating" value="4" />
+                                        <label class = "full" for="star4" title="Pretty good - 4 stars"></label>
+
+                                        <input type="radio" id="star3" name="rating" value="3" />
+                                        <label class = "full" for="star3" title="Meh - 3 stars"></label>
+
+                                        <input type="radio" id="star2" name="rating" value="2" />
+                                        <label class = "full" for="star2" title="Kinda bad - 2 stars"></label>
+
+                                        <input type="radio" id="star1" name="rating" value="1" />
+                                        <label class = "full" for="star1" title="Sucks big time - 1 star"></label>
+                            </div>
+                            </div>
+                        <input type="text" name="feedback" id="feedback" class="form-control" required='True'>
+
+                    <div class = 'text-center'>
+                        <a aria-current="page" href="/braintumor">
+                        <button type='back' class='btn btn-outline-danger btn-lg' style='width:300px;margin-top: 10px;'> Back
+                        </button></a>
+                    </div>
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
+        crossorigin="anonymous"></script>
+
+
+</body>
+
+</html>
